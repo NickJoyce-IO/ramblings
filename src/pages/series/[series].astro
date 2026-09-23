@@ -1,0 +1,22 @@
+---
+import PostList from '../../components/PostList.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPosts, seriesSlug } from '../../lib/posts';
+
+export async function getStaticPaths() {
+	const posts = await getPosts();
+	const names = [...new Set(posts.flatMap((post) => (post.data.series ? [post.data.series] : [])))];
+	return names.map((name) => ({
+		params: { series: seriesSlug(name) },
+		// A Series reads in order, so oldest first.
+		props: { name, posts: posts.filter((post) => post.data.series === name).reverse() },
+	}));
+}
+
+const { name, posts } = Astro.props;
+---
+
+<BaseLayout title={`Series: ${name}`}>
+	<h1>Series: {name}</h1>
+	<PostList posts={posts} />
+</BaseLayout>
