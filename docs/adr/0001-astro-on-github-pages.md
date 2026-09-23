@@ -1,0 +1,3 @@
+# Astro on GitHub Pages, in a public repo
+
+Ramblings is built with Astro (minimal template, no blog theme) and deployed to GitHub Pages from a public repo on the `nickjoyce-io` account, served at `ramblings.nickjoyce.io`. Posts are Markdown in Git, so the content is portable if the generator is ever replaced. We chose Astro over Hugo, Eleventy and Jekyll because it is TypeScript-first and current, which serves the goal of getting hands-on with modern tooling, while staying boring: Markdown in, static HTML out. GitHub Pages is free, and a public repo is required on a free account and suits building in public.
