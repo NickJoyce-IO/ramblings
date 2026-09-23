@@ -1,6 +1,6 @@
 # Ramblings
 
-A personal blog by Nick Joyce, Head of Data and Development in UK Government, about applying AI-assisted development inside the constraints of the public sector. It is also the vehicle for getting hands-on with code again.
+A personal blog by Nick Joyce, Head of Data and Development in UK Government.
 
 ## Language
 
