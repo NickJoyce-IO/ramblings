@@ -9,8 +9,12 @@ The working name of the blog. It may change; the domain is the lasting brand.
 _Avoid_: the site, the app
 
 **Post**:
-A single published piece of writing on Ramblings. Every Post is exactly one of the three kinds below.
+A single piece of writing on Ramblings, published or not. Every Post is exactly one of the three kinds below.
 _Avoid_: article, entry, page
+
+**Draft**:
+A Post not yet ready to publish. A Draft is never shown on the live site.
+_Avoid_: WIP, unpublished, hidden
 
 **Essay**:
 A Post giving an opinion or argument about AI-assisted delivery in government.
