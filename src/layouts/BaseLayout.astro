@@ -1,4 +1,6 @@
 ---
+import '@fontsource-variable/source-serif-4/wght.css';
+import '@fontsource-variable/source-serif-4/wght-italic.css';
 import '../styles/global.css';
 
 interface Props {
@@ -13,6 +15,9 @@ const {
 
 const pageTitle = title ? `${title} | Ramblings` : 'Ramblings';
 const canonical = new URL(Astro.url.pathname, Astro.site);
+
+const path = Astro.url.pathname;
+const inPosts = path.startsWith('/posts/') || path.startsWith('/series/');
 ---
 
 <!doctype html>
@@ -21,6 +26,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="color-scheme" content="light dark" />
+		<meta name="theme-color" content="#faf7f2" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#171614" media="(prefers-color-scheme: dark)" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<link rel="canonical" href={canonical} />
@@ -30,10 +38,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 	<body>
 		<a class="skip-link" href="#main">Skip to content</a>
 		<header class="site-header">
-			<a class="site-title" href="/">Ramblings</a>
+			<a class="wordmark" href="/">Ramblings</a>
 			<nav class="site-nav" aria-label="Main">
-				<a href="/">Home</a>
-				<a href="/posts/">Posts</a>
+				<a href="/" aria-current={path === '/' ? 'page' : undefined}>Home</a>
+				<a href="/posts/" aria-current={inPosts ? 'page' : undefined}>Posts</a>
 			</nav>
 		</header>
 		<main id="main">
