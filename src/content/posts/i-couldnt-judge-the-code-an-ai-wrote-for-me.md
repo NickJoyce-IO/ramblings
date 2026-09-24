@@ -1,5 +1,5 @@
 ---
-title: "I couldn't judge the code an AI wrote for me. Here's what made that tolerable."
+title: "I couldn't judge the code an agent wrote for me. Here's what made that tolerable."
 description: "What I learned building this blog with an AI coding agent: guardrails made the work traceable, but I couldn't judge whether the code was right."
 kind: build-log
 date: 2026-09-24
