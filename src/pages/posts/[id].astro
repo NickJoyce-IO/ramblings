@@ -1,16 +1,27 @@
 ---
 import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { formatDate, getPosts, kindLabels, seriesSlug } from '../../lib/posts';
+import {
+	formatDate,
+	getPosts,
+	getSeriesPosition,
+	kindLabels,
+	readingTime,
+	seriesSlug,
+} from '../../lib/posts';
 
 export async function getStaticPaths() {
 	const posts = await getPosts();
-	return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
+	return posts.map((post) => ({
+		params: { id: post.id },
+		props: { post, series: getSeriesPosition(post, posts) },
+	}));
 }
 
-const { post } = Astro.props;
+const { post, series } = Astro.props;
 const { Content } = await render(post);
-const { title, description, kind, date, series, draft } = post.data;
+const { title, description, kind, date, draft } = post.data;
+const minutes = readingTime(post.body ?? '');
 ---
 
 <BaseLayout title={title} description={description}>
@@ -18,13 +29,42 @@ const { title, description, kind, date, series, draft } = post.data;
 		<header>
 			<p class="meta">
 				{draft && <span class="draft-badge">Draft · </span>}
-				{kindLabels[kind]} · <time datetime={date.toISOString()}>{formatDate(date)}</time>
-				{series && <> · Series: <a href={`/series/${seriesSlug(series)}/`}>{series}</a></>}
+				{kindLabels[kind]} · <time datetime={date.toISOString()}>{formatDate(date)}</time> · {minutes} min read
 			</p>
+			{
+				series && (
+					<p class="meta">
+						Series: <a href={`/series/${seriesSlug(series.name)}/`}>{series.name}</a> · Part {series.position} of{' '}
+						{series.total}
+					</p>
+				)
+			}
 			<h1>{title}</h1>
 		</header>
 		<div class="prose">
 			<Content />
 		</div>
+		{
+			series && (series.previous || series.next) && (
+				<nav class="series-nav" aria-label={`More in ${series.name}`}>
+					{series.previous ? (
+						<a class="series-prev" href={`/posts/${series.previous.id}/`}>
+							<span class="meta">← Previous</span>
+							<span class="series-title">{series.previous.data.title}</span>
+						</a>
+					) : (
+						<span />
+					)}
+					{series.next ? (
+						<a class="series-next" href={`/posts/${series.next.id}/`}>
+							<span class="meta">Next →</span>
+							<span class="series-title">{series.next.data.title}</span>
+						</a>
+					) : (
+						<span />
+					)}
+				</nav>
+			)
+		}
 	</article>
 </BaseLayout>
