@@ -15,6 +15,29 @@ export async function getPosts(): Promise<Post[]> {
 	return posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 }
 
+// About 220 words a minute. Fenced code is skipped: it is skimmed, not read.
+export function readingTime(markdown: string): number {
+	const words = markdown.replace(/```[\s\S]*?```/g, ' ').split(/\s+/).filter(Boolean).length;
+	return Math.max(1, Math.ceil(words / 220));
+}
+
+// Where a Post sits within its Series (oldest first), and its neighbours.
+export function getSeriesPosition(post: Post, posts: Post[]) {
+	const name = post.data.series;
+	if (!name) return undefined;
+	const inSeries = posts
+		.filter((p) => p.data.series === name)
+		.sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf() || a.id.localeCompare(b.id));
+	const index = inSeries.findIndex((p) => p.id === post.id);
+	return {
+		name,
+		position: index + 1,
+		total: inSeries.length,
+		previous: inSeries[index - 1],
+		next: inSeries[index + 1],
+	};
+}
+
 // "Building Ramblings" -> "building-ramblings"
 export function seriesSlug(name: string): string {
 	return name
