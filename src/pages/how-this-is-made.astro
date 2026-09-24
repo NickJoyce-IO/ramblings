@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+	title="How this is made"
+	description="Where and how AI was used in building and writing Ramblings."
+>
+	<h1>How this is made</h1>
+
+	<p>
+		Ramblings is partly an experiment in building with AI agents, so it is worth being plain about where AI is
+		used.
+	</p>
+
+	<h2>The site</h2>
+	<p>
+		The code is written by an AI coding agent (Claude Code). Every change goes through a pull request that I
+		read and merge myself, and automated checks must pass before anything is published. The site is built with
+		Astro and hosted on GitHub Pages. The
+		<a href="https://github.com/NickJoyce-IO/ramblings">source is public</a>, including the history of how it
+		was built.
+	</p>
+
+	<h2>The writing</h2>
+	<p>
+		The posts are written by me, from my own notes and experience. An AI agent may challenge an argument, point
+		out weak spots or suggest edits, but it does not write the posts for me.
+	</p>
+
+	<h2>Views</h2>
+	<p>These are my personal views and do not represent those of my employer.</p>
+</BaseLayout>
