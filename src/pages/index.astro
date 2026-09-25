@@ -1,16 +1,41 @@
 ---
 import PostList from '../components/PostList.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { linkHref, linkLabels, links } from '../config';
 import { getPosts } from '../lib/posts';
 
 const latest = (await getPosts()).slice(0, 5);
+
+const elsewhere = (Object.keys(links) as (keyof typeof links)[])
+	.map((name) => ({ label: linkLabels[name], href: linkHref(name) }))
+	.filter((link): link is { label: string; href: string } => Boolean(link.href));
 ---
 
 <BaseLayout>
 	<h1>Ramblings</h1>
-	<p>
-		Thoughts on applying AI-assisted development inside UK Government, and on learning to code with agents again.
+	<p class="lede">
+		Notes on AI-assisted development and technology leadership, and on learning to code with agents again.
 	</p>
+
+	<section class="intro" aria-labelledby="about-heading">
+		<h2 id="about-heading">About</h2>
+		<p>
+			I'm Nick Joyce, a leader in Digital and Technology within the Public Sector. I'm writing down what I
+			learn about how AI changes the way technology is delivered, and what I find when I build with agents
+			myself.
+		</p>
+		{
+			elsewhere.length > 0 && (
+				<ul class="link-row" aria-label="Elsewhere">
+					{elsewhere.map((link) => (
+						<li>
+							<a href={link.href}>{link.label}</a>
+						</li>
+					))}
+				</ul>
+			)
+		}
+	</section>
 
 	<h2>Latest</h2>
 	<PostList posts={latest} headingLevel="h3" />
