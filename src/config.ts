@@ -2,8 +2,8 @@
 // placeholder can never go live as a dead link: fill one in to show it.
 export const links = {
 	github: 'https://github.com/NickJoyce-IO',
-	linkedin: '',
-	email: '', // an address, not a mailto: link
+	linkedin: 'https://www.linkedin.com/in/nick-joyce-6906b22b',
+	email: 'nickjoyceio7@gmail.com',
 };
 
 export const linkLabels: Record<keyof typeof links, string> = {
