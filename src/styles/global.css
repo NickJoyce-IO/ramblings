@@ -255,6 +255,49 @@ article > header h1 {
 	margin-top: 0.75rem;
 }
 
+/* ---------- Home page ---------- */
+.lede {
+	margin: 0 0 2rem;
+	font-size: clamp(1.2rem, 1.1rem + 0.5vw, 1.4rem);
+	line-height: 1.5;
+}
+
+.intro {
+	margin-bottom: 3rem;
+	padding: 1.25rem 1.5rem;
+	background: var(--surface);
+	border-radius: 8px;
+}
+
+.intro h2 {
+	margin: 0 0 0.5rem;
+	color: var(--text-muted);
+	font-family: var(--font-ui);
+	font-size: 0.8rem;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.intro p {
+	margin: 0;
+}
+
+.link-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem 1.25rem;
+	margin: 1rem 0 0;
+	padding: 0;
+	list-style: none;
+	font-family: var(--font-ui);
+	font-size: 0.95rem;
+}
+
+.link-row li {
+	margin: 0;
+}
+
 /* ---------- Markdown content ---------- */
 .prose img {
 	max-width: 100%;
