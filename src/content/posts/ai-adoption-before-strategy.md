@@ -1,7 +1,7 @@
 ---
 title: "My team adopted AI before I had a plan for it"
 description: "I surveyed my engineering and data team about how they use AI, expecting to find a few early adopters. Turns out adoption was already done, and the leadership job looks different from the one I expected."
-date: 2026-10-03
+date: 2026-10-05
 kind: essay
 checklist: passed
 ---
