@@ -1,0 +1,3 @@
+# Cookieless analytics with Umami Cloud
+
+Analytics was deferred at launch. We now add it to learn which Posts are read, using Umami Cloud on the free Hobby tier. Umami sets no cookies and stores no personal data, so no cookie banner is needed and visitors are not tracked across sites. We chose it over Google Analytics, which needs consent under PECR and sends data to an ad business, and over self-hosting Umami, which would mean running a server and database for a static site. The script loads only in production builds and only reports from `ramblings.nickjoyce.io`, and the How This Is Made page discloses it. The website ID sits in `src/config.ts` because it is public in the page source anyway; emptying it turns analytics off.
